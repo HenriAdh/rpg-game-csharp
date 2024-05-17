@@ -3,7 +3,7 @@ class Program
 {
   static void Main()
   {
-    Character enemy = new Character("Ogro", 150, 5);
+    Character enemy = new Orc("Ogro");
 
     Console.WriteLine("Hello Warrior, whats your name?");
     string? name = Console.ReadLine();
@@ -12,10 +12,12 @@ class Program
       name = "Player";
     }
 
-    Character hero = new Character(name, 100, 10);
+    Character hero = new Human(name);
     Menu menu = new Menu();
 
-    hero.Show();
+    hero.Attack(enemy);
+    Console.WriteLine($"{enemy.Healt}");
+    Console.ReadKey();
 
     Console.WriteLine($"\n{enemy.Name} found!\n");
     Console.ReadKey();
@@ -29,7 +31,6 @@ class Program
         break;
       }
       menu.DoAction(action, hero, enemy);
-      Console.ReadKey();
     }
   }
 }

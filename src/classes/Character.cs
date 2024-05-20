@@ -9,7 +9,7 @@ namespace RPG
     public int Healt;
     public int Damage;
     public int Speed;
-    public string[] Bag = { };
+    public string[] Bag = new string[10];
     private int LimitBag = 10;
     public Weapon? WeaponEquiped;
 
@@ -25,7 +25,16 @@ namespace RPG
       Console.WriteLine($"HP: {Healt}");
       Console.WriteLine($"DAMAGE: {Damage}");
       Console.WriteLine($"SPEED: {Speed}");
-      Console.WriteLine($"BAG: {Bag.Length}/{LimitBag}");
+      int count = 0;
+      for (int x = 0; x < 10; x++)
+      {
+        if (Bag[x] == null)
+        {
+          break;
+        }
+        count++;
+      }
+      Console.WriteLine($"BAG: {count}/{LimitBag}");
     }
 
     public void ShowBag()
@@ -33,9 +42,34 @@ namespace RPG
       string itens = "";
       for (int x = 0; x < Bag.Length; x++)
       {
+        if (Bag[x] == null)
+        {
+          break;
+        }
+        if (x != 0)
+        {
+          itens += ", ";
+        }
         itens += Bag[x];
       }
       Console.WriteLine($"Itens in the bag: {itens}");
+    }
+
+    public void AddItemToBag(string new_item)
+    {
+      for (int x = 0; x < 11; x++)
+      {
+        if (Bag[x] == null)
+        {
+          Bag[x] = new_item;
+          return;
+        }
+        if (x == 10)
+        {
+          Console.WriteLine("Bag is full!");
+          return;
+        }
+      }
     }
 
     public void EquipWeapon(Weapon weapon)

@@ -7,6 +7,7 @@ namespace RPG
       base.Damage = 10;
       base.Healt = 100;
       base.Speed = 20;
+      base.AddItemToBag("Sword");
     }
   }
 
@@ -14,9 +15,10 @@ namespace RPG
   {
     public Goblin(string name) : base(name)
     {
-      base.Damage = 5;
+      base.Damage = 7;
       base.Healt = 70;
       base.Speed = 50;
+      base.AddItemToBag("Knife");
     }
   }
 
@@ -27,6 +29,7 @@ namespace RPG
       base.Damage = 13;
       base.Healt = 90;
       base.Speed = 25;
+      base.AddItemToBag("Bow");
     }
   }
 
@@ -37,6 +40,7 @@ namespace RPG
       base.Damage = 17;
       base.Healt = 120;
       base.Speed = 16;
+      base.AddItemToBag("Hammer");
     }
   }
 
@@ -47,6 +51,7 @@ namespace RPG
       base.Damage = 20;
       base.Healt = 120;
       base.Speed = 13;
+      base.AddItemToBag("War Hammer");
     }
   }
 
@@ -57,6 +62,7 @@ namespace RPG
       base.Damage = 15;
       base.Healt = 70;
       base.Speed = 25;
+      base.AddItemToBag("Claws");
     }
   }
 
@@ -67,6 +73,7 @@ namespace RPG
       base.Damage = 30;
       base.Healt = 200;
       base.Speed = 8;
+      base.AddItemToBag("Hand");
     }
   }
 }

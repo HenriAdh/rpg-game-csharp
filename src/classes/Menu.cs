@@ -21,7 +21,8 @@ namespace RPG
       switch (action)
       {
         case "1":
-
+          Battle battle = new Battle(hero, enemy);
+          battle.InitBattle();
           break;
         case "2":
           hero.Show();

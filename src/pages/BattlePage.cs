@@ -32,19 +32,31 @@ namespace RPG
         Console.WriteLine($"[2] ShowBag");
         Console.WriteLine($"[3] Show Your Stats");
         Console.WriteLine($"[4] Show Enemy Stats");
+        Console.WriteLine($"");
         string? opt = Console.ReadLine();
         if (opt == "1")
         {
           if (this.Hero.Speed > this.Enemy.Speed)
           {
-            int hero_luck = await this.RollTheDiceAsync();
             Console.WriteLine("\nYour Turn!");
+            int hero_luck = await this.RollTheDiceAsync();
             this.Hero.Attack(this.Enemy, hero_luck);
             Console.ReadKey();
             Console.WriteLine("\nEnemy Turn!");
             int enemy_luck = await this.RollTheDiceAsync();
             this.Enemy.Attack(this.Hero, enemy_luck);
+          }
+          else
+          {
+            Console.WriteLine("\nEnemy Turn!");
+            int enemy_luck = await this.RollTheDiceAsync();
+            this.Enemy.Attack(this.Hero, enemy_luck);
+
             Console.ReadKey();
+
+            Console.WriteLine("\nYour Turn!");
+            int hero_luck = await this.RollTheDiceAsync();
+            this.Hero.Attack(this.Enemy, hero_luck);
           }
 
         }
@@ -64,6 +76,7 @@ namespace RPG
         {
           Console.WriteLine("\nChoose a valid option!");
         }
+        Console.ReadKey();
       }
     }
 
@@ -71,18 +84,21 @@ namespace RPG
     {
       Random random = new();
       int randint = random.Next(0, 21) + 1;
-      Console.WriteLine("\nRolling the dice");
+      Console.Write("\nRolling the dice");
       await Pause();
       Console.Write(".");
+      await Pause();
       Console.Write(".");
-      Console.Write(".");
-      Console.WriteLine($"{randint}!!!");
+      await Pause();
+      Console.Write(".\n");
+      await Pause();
+      Console.Write($"{randint}!!!\n");
       return randint;
     }
 
     async Task Pause()
     {
-      await Task.Delay(1000);
+      await Task.Delay(300);
     }
   }
 }

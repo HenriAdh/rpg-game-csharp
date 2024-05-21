@@ -71,6 +71,7 @@ namespace RPG
           Console.WriteLine($"\n[1] Use");
           Console.WriteLine($"[2] Drop");
           Console.WriteLine($"[3] Back");
+          Console.WriteLine("");
           string? option = Console.ReadLine();
           if (option == "1")
           {
@@ -145,7 +146,7 @@ namespace RPG
       {
         enemy.Healt = 0;
       }
-      Console.WriteLine($"{this.Name} hitted {enemy.Name}, target lost {damage} points of HP");
+      Console.WriteLine($"{this.Name} hitted {enemy.Name}, dealt {damage} points of damage");
     }
   }
 }

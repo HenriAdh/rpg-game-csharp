@@ -2,18 +2,6 @@ namespace RPG
 {
   public class InitialPage
   {
-    static bool ValidateOption(string? action)
-    {
-      return action switch
-      {
-        "1" => true,
-        "2" => true,
-        "3" => true,
-        "4" => true,
-        "5" => true,
-        _ => false,
-      };
-    }
     public string[] NewPlayer()
     {
       string[] new_player_infs = new string[2];
@@ -52,32 +40,17 @@ namespace RPG
       }
     }
     // Se apagar é gay o
-    public int InitialActions()
+    public void InitialActions()
     {
-      string? action;
-      while (true)
-      {
-        Console.Clear();
-        Console.WriteLine($"[1] Start Adventure ");
-        Console.WriteLine($"[2] Stats           ");
-        Console.WriteLine($"[3] Bag             ");
-        Console.WriteLine($"[4] Sla             ");
-        Console.WriteLine($"[5] Exit            ");
-        Console.WriteLine("\n");
-        action = Console.ReadLine();
-        bool is_valid = ValidateOption(action);
-        if (is_valid)
-        {
-          break;
-        }
-        else
-        {
-          Console.WriteLine("\nInvalid Option!");
-          Console.ReadKey();
-        }
-      }
-      int opt = Convert.ToInt32(action);
-      return opt;
+      Console.Clear();
+      Console.WriteLine($"        Menu        ");
+      Console.WriteLine($"--------------------");
+      Console.WriteLine($"[1] Start Adventure ");
+      Console.WriteLine($"[2] Stats           ");
+      Console.WriteLine($"[3] Bag             ");
+      Console.WriteLine($"[4] Sla             ");
+      Console.WriteLine($"[5] Exit            ");
+      Console.WriteLine("\n");
     }
   }
 }

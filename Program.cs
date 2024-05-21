@@ -17,28 +17,43 @@ class Program
 
     while (true)
     {
-      int opt = initialPage.InitialActions();
-      if (opt == 5)
+      initialPage.InitialActions();
+      string? opt = Console.ReadLine();
+      if (opt == "5")
       {
         break;
       }
-      switch (opt)
+      else if (opt == "1")
       {
-        case 1:
-          break;
-        case 2:
-          hero.Show();
-          break;
-        case 3:
-          hero.ShowBag();
-          break;
-        case 4:
-          break;
-        default:
-          break;
-      };
-      Console.ReadKey();
+        Character enemy = new Orc("Escala6x1");
+        Battle battle = new Battle(hero, enemy);
+        battle.InitBattle();
+        Console.WriteLine("The battle end!");
+        Console.ReadLine();
+      }
+      else if (opt == "2")
+      {
+        hero.Show();
+      }
     }
+    switch (opt)
+    {
+      case 1:
+
+        break;
+      case 2:
+
+        break;
+      case 3:
+        hero.ShowBag();
+        break;
+      case 4:
+        break;
+      default:
+        break;
+    };
+    Console.ReadKey();
+
 
 
 

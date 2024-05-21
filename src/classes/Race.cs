@@ -7,7 +7,8 @@ namespace RPG
       base.Damage = 10;
       base.Healt = 100;
       base.Speed = 20;
-      base.AddItemToBag("Sword");
+      Item sword = new Weapon("Sword", 10, 3);
+      base.AddItemToBag(sword);
     }
   }
 
@@ -18,7 +19,8 @@ namespace RPG
       base.Damage = 7;
       base.Healt = 70;
       base.Speed = 50;
-      base.AddItemToBag("Knife");
+      Item knife = new Weapon("Knife", 10, 3);
+      base.AddItemToBag(knife);
     }
   }
 
@@ -29,7 +31,8 @@ namespace RPG
       base.Damage = 13;
       base.Healt = 90;
       base.Speed = 25;
-      base.AddItemToBag("Bow");
+      Item bow = new Weapon("Bow", 10, 3);
+      base.AddItemToBag(bow);
     }
   }
 
@@ -40,7 +43,8 @@ namespace RPG
       base.Damage = 17;
       base.Healt = 120;
       base.Speed = 16;
-      base.AddItemToBag("Hammer");
+      Item hammer = new Weapon("Hammer", 10, 3);
+      base.AddItemToBag(hammer);
     }
   }
 
@@ -51,7 +55,8 @@ namespace RPG
       base.Damage = 20;
       base.Healt = 120;
       base.Speed = 13;
-      base.AddItemToBag("War Hammer");
+      Item war_hammer = new Weapon("War Hammer", 10, 3);
+      base.AddItemToBag(war_hammer);
     }
   }
 
@@ -62,7 +67,8 @@ namespace RPG
       base.Damage = 15;
       base.Healt = 70;
       base.Speed = 25;
-      base.AddItemToBag("Claws");
+      Item claws = new Weapon("Claws", 10, 3);
+      base.AddItemToBag(claws);
     }
   }
 
@@ -73,7 +79,8 @@ namespace RPG
       base.Damage = 30;
       base.Healt = 200;
       base.Speed = 8;
-      base.AddItemToBag("Hand");
+      Item hand = new Weapon("Hand", 10, 3);
+      base.AddItemToBag(hand);
     }
   }
 }

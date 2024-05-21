@@ -21,7 +21,7 @@ namespace RPG
       switch (action)
       {
         case "1":
-          // enemy.Attack(hero.Damage);
+
           break;
         case "2":
           hero.Show();

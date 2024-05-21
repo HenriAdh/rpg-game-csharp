@@ -1,16 +1,18 @@
 namespace RPG
 {
-  public class Weapon
+  public class Weapon : Item
   {
-    public string Name;
-    public int Damage;
-    public string Type;
+    public int Range;
 
-    public Weapon(string name, int damage, string type)
+    public Weapon(string name, int damage, int range) : base(name, damage)
     {
-      this.Name = name;
-      this.Damage = damage;
-      this.Type = type;
+      this.Range = range;
+    }
+
+    public override void ShowItem()
+    {
+      base.ShowItem();
+      Console.WriteLine($"Range: {this.Power}");
     }
   }
 }

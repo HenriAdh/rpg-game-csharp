@@ -9,19 +9,17 @@ class Program
     string[] infs_player = initialPage.NewPlayer();
     Character hero = infs_player[1] switch
     {
-      "1" => new Human(infs_player[0]),
-      "2" => new Elf(infs_player[0]),
-      "3" => new Dwarf(infs_player[0]),
-      "4" => new Orc(infs_player[0]),
-      "5" => new Goblin(infs_player[0]),
-      _ => new Human(infs_player[0]),
+      "1" => new Knight(infs_player[0]),
+      "2" => new Archer(infs_player[0]),
+      "3" => new Mage(infs_player[0]),
+      "4" => new Assassin(infs_player[0]),
+      "5" => new Healer(infs_player[0]),
+      "6" => new Paladin(infs_player[0]),
+      "7" => new Barbarian(infs_player[0]),
+      "8" => new Bard(infs_player[0]),
+      _ => new Knight(infs_player[0]),
     };
 
-    Menu(initialPage, hero, infs_player[1]);
-  }
-
-  public static void Menu(InitialPage initialPage, Character hero, string race)
-  {
     while (true)
     {
       initialPage.InitialActions();
@@ -36,7 +34,7 @@ class Program
       }
       else if (opt == "1")
       {
-        Character enemy = new Orc("Escala6x1");
+        Character enemy = GenerateEnemy(hero);
         Battle battle = new Battle(hero, enemy);
         battle.InitBattle();
         if (hero.Healt <= 0)
@@ -50,14 +48,17 @@ class Program
             Console.Write($"\nLet's go, {hero.Name}!");
             string newName = hero.Name;
 
-            hero = race switch
+            hero = infs_player[1] switch
             {
-              "1" => new Human(newName),
-              "2" => new Elf(newName),
-              "3" => new Dwarf(newName),
-              "4" => new Orc(newName),
-              "5" => new Goblin(newName),
-              _ => new Human(newName),
+              "1" => new Knight(newName),
+              "2" => new Archer(newName),
+              "3" => new Mage(newName),
+              "4" => new Assassin(newName),
+              "5" => new Healer(newName),
+              "6" => new Paladin(newName),
+              "7" => new Barbarian(newName),
+              "8" => new Bard(newName),
+              _ => new Knight(newName),
             };
           }
           else
@@ -105,5 +106,29 @@ class Program
       }
       Console.ReadKey();
     }
+  }
+
+  static Character GenerateEnemy(Character hero)
+  {
+    Random random = new();
+    int rdNumber = random.Next(0, 8);
+
+    Names names = new();
+    string newName = names.RandName();
+
+    Character enemy = rdNumber switch
+    {
+      1 => new Knight(newName),
+      2 => new Archer(newName),
+      3 => new Mage(newName),
+      4 => new Assassin(newName),
+      5 => new Healer(newName),
+      6 => new Paladin(newName),
+      7 => new Barbarian(newName),
+      8 => new Bard(newName),
+      _ => new Knight(newName),
+    };
+
+    return enemy;
   }
 }

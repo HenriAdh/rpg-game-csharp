@@ -22,7 +22,11 @@ namespace RPG
     public Character(string name)
     {
       Name = name;
+      Item heal_potion = new Heal("Small Heal Potion", 10, 2, "Commun", 1);
+      this.AddItemToBag(heal_potion);
     }
+
+    public virtual void ShowClass() { }
 
     public void Show()
     {
@@ -70,13 +74,15 @@ namespace RPG
         {
           break;
         }
-        itens += $"\t[{x + 1}] " + this.Bag[x].Name;
+        itens += $"\n[{x + 1}] " + this.Bag[x].Name;
       }
       while (true)
       {
         Console.Clear();
-        Console.WriteLine($"Itens in the bag: \n{itens}");
-        Console.WriteLine($"\t[{x + 1}] Back");
+        Console.WriteLine($"Itens in the bag:");
+        Console.WriteLine($"-----------------");
+        Console.WriteLine($"{itens}");
+        Console.WriteLine($"[{x + 1}] Back");
         string? opt = Console.ReadLine();
         if (opt == Convert.ToString(x + 1))
         {
@@ -93,18 +99,8 @@ namespace RPG
           string? option = Console.ReadLine();
           if (option == "1")
           {
-            if (this.Bag[index].GetType() == Type.GetType("RPG.Weapon"))
-            {
-              this.EquipWeapon(this.Bag[index]);
-            }
-            else if (this.Bag[index].GetType() == Type.GetType("RPG.Armor"))
-            {
-              this.EquipArmor(this.Bag[index]);
-            }
-            else
-            {
-              Console.WriteLine("Nothing...");
-            }
+            this.Bag[index].UseFunction(this);
+
           }
           else if (option == "2")
           {
@@ -148,6 +144,17 @@ namespace RPG
     {
       this.ArmorEquiped = armor;
       Console.WriteLine($"{this.Name} equipped an armor {armor.Name}.");
+    }
+
+    public void RecoveryHealt(Item potion)
+    {
+      int previous_healt = this.Healt;
+      this.Healt += potion.Power;
+      if (this.Healt > this.BaseHealt)
+      {
+        this.Healt = this.BaseHealt;
+      }
+      Console.WriteLine($"{this.Name} drink {potion.Name} and recovery {this.Healt - previous_healt} points of healt.");
     }
 
     public void LostHealt(int damage)

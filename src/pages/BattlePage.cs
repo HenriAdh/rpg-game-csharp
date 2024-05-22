@@ -28,6 +28,7 @@ namespace RPG
         Console.Clear();
         this.ShowStatsBattle();
         Console.WriteLine($"What would you like to do?");
+        Console.WriteLine($"--------------------------");
         Console.WriteLine($"[1] Attack {this.Enemy.Name}");
         Console.WriteLine($"[2] ShowBag");
         Console.WriteLine($"[3] Show Your Stats");
@@ -90,14 +91,14 @@ namespace RPG
     public int RollTheDiceAsync()
     {
       Random random = new Random();
-      int randint = random.Next(0, 21) + 1;
+      int randint = random.Next(0, 20) + 1;
       Console.Write("\nRolling the dice");
       Pause();
       Console.Write(".");
       Pause();
       Console.Write(".");
       Pause();
-      Console.Write(".\n");
+      Console.Write(". ");
       Pause();
       Console.Write($"{randint}!!!\n");
       return randint;

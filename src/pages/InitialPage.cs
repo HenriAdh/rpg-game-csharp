@@ -17,15 +17,18 @@ namespace RPG
       {
         Console.Clear();
         Console.WriteLine($"Hello {name}, nice to meet you!");
-        Console.WriteLine($"\nWhats your race?");
-        Console.WriteLine($"    Name    | Healt | Damage | Speed");
-        Console.WriteLine($"------------------------------------");
-        Console.WriteLine($"[1] Human   | 100   | 10     | 20   ");
-        Console.WriteLine($"[2] Elf     | 90    | 13     | 25   ");
-        Console.WriteLine($"[3] Dwarf   | 120   | 17     | 16   ");
-        Console.WriteLine($"[4] Orc     | 120   | 20     | 20   ");
-        Console.WriteLine($"[5] Goblin  | 70    | 7      | 50   ");
+        Console.WriteLine($"\nWhats your classe?");
+        Console.WriteLine($"--------------------");
+        Console.WriteLine($"[1] Knight");
+        Console.WriteLine($"[2] Archer");
+        Console.WriteLine($"[3] Mage");
+        Console.WriteLine($"[4] Assassin");
+        Console.WriteLine($"[5] Healer");
+        Console.WriteLine($"[6] Paladin");
+        Console.WriteLine($"[7] Barbarian");
+        Console.WriteLine($"[8] Bard");
         Console.WriteLine($"\n");
+
         race = Console.ReadLine();
         if (race == null || race == "")
         {
@@ -34,6 +37,9 @@ namespace RPG
         }
         else
         {
+          Knight knight = new("example");
+          knight.ShowClass();
+          Console.ReadKey();
           new_player_infs[1] = race;
           return new_player_infs;
         }

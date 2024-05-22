@@ -29,7 +29,7 @@ namespace RPG
         race = Console.ReadLine();
         if (race == null || race == "")
         {
-          Console.Write("\nInvalid option!");
+          Console.Write("\nPlease, choose an valid option.");
           Console.ReadKey();
         }
         else
@@ -48,7 +48,7 @@ namespace RPG
       Console.WriteLine($"[1] Start Adventure ");
       Console.WriteLine($"[2] Stats           ");
       Console.WriteLine($"[3] Bag             ");
-      Console.WriteLine($"[4] Sla             ");
+      Console.WriteLine($"[4] Store           ");
       Console.WriteLine($"[5] Exit            ");
       Console.WriteLine("\n");
     }

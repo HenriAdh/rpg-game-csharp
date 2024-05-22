@@ -5,7 +5,7 @@ namespace RPG
   {
     public Character Hero;
     public Character Enemy;
-    public int Round = 0;
+    public int Round = 1;
 
     public Battle(Character hero, Character enemy)
     {
@@ -21,7 +21,7 @@ namespace RPG
       Console.WriteLine("");
     }
 
-    public async void InitBattle()
+    public void InitBattle()
     {
       while (true)
       {
@@ -36,29 +36,36 @@ namespace RPG
         string? opt = Console.ReadLine();
         if (opt == "1")
         {
-          if (this.Hero.Speed > this.Enemy.Speed)
+          Console.Clear();
+          if (this.Hero.Speed >= this.Enemy.Speed)
           {
             Console.WriteLine("\nYour Turn!");
-            int hero_luck = await this.RollTheDiceAsync();
+            int hero_luck = this.RollTheDiceAsync();
             this.Hero.Attack(this.Enemy, hero_luck);
+
             Console.ReadKey();
+
             Console.WriteLine("\nEnemy Turn!");
-            int enemy_luck = await this.RollTheDiceAsync();
+            int enemy_luck = this.RollTheDiceAsync();
             this.Enemy.Attack(this.Hero, enemy_luck);
           }
           else
           {
             Console.WriteLine("\nEnemy Turn!");
-            int enemy_luck = await this.RollTheDiceAsync();
+            int enemy_luck = this.RollTheDiceAsync();
             this.Enemy.Attack(this.Hero, enemy_luck);
 
             Console.ReadKey();
 
             Console.WriteLine("\nYour Turn!");
-            int hero_luck = await this.RollTheDiceAsync();
+            int hero_luck = this.RollTheDiceAsync();
             this.Hero.Attack(this.Enemy, hero_luck);
           }
-
+          if (Hero.Healt <= 0 || Enemy.Healt <= 0)
+          {
+            break;
+          }
+          this.Round++;
         }
         else if (opt == "2")
         {
@@ -74,31 +81,31 @@ namespace RPG
         }
         else
         {
-          Console.WriteLine("\nChoose a valid option!");
+          Console.WriteLine("\nPlease, choose an valid option.");
         }
         Console.ReadKey();
       }
     }
 
-    public async Task<int> RollTheDiceAsync()
+    public int RollTheDiceAsync()
     {
-      Random random = new();
+      Random random = new Random();
       int randint = random.Next(0, 21) + 1;
       Console.Write("\nRolling the dice");
-      await Pause();
+      Pause();
       Console.Write(".");
-      await Pause();
+      Pause();
       Console.Write(".");
-      await Pause();
+      Pause();
       Console.Write(".\n");
-      await Pause();
+      Pause();
       Console.Write($"{randint}!!!\n");
       return randint;
     }
 
-    async Task Pause()
+    private void Pause()
     {
-      await Task.Delay(300);
+      Thread.Sleep(300);
     }
   }
 }

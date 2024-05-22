@@ -1,18 +1,7 @@
 namespace RPG
 {
-  public class Armor
+  public class Armor : Item
   {
-    public int Defense;
-    public int Level;
-    public string Rarity;
-    public string Name;
-
-    public Armor(int defense, int level, string rarity, string name)
-    {
-      this.Defense = defense;
-      this.Level = level;
-      this.Rarity = rarity;
-      this.Name = name;
-    }
+    public Armor(string name, int defense, string rarity, int level) : base(name, defense, rarity, level) { }
   }
 }

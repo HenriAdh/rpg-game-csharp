@@ -4,7 +4,7 @@ namespace RPG
   {
     public int Range;
 
-    public Weapon(string name, int damage, int range) : base(name, damage)
+    public Weapon(string name, int damage, int range, string rarity, int level) : base(name, damage, rarity, level)
     {
       this.Range = range;
     }

@@ -6,6 +6,7 @@ class Program
   {
     Console.Clear();
     InitialPage initialPage = new InitialPage();
+    Store store = new Store();
     string[] infs_player = initialPage.NewPlayer();
     Character hero = infs_player[1] switch
     {
@@ -91,6 +92,7 @@ class Program
       else if (opt == "2")
       {
         hero.Show();
+        Console.ReadKey();
       }
       else if (opt == "3")
       {
@@ -98,13 +100,13 @@ class Program
       }
       else if (opt == "4")
       {
-        Console.WriteLine("Comming soon!");
+        store.ShowStore(hero);
       }
       else
       {
         Console.WriteLine("\nPlease, choose an valid option.");
+        Console.ReadKey();
       }
-      Console.ReadKey();
     }
   }
 

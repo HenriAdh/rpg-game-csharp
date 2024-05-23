@@ -3,7 +3,7 @@ using System.Data.Common;
 
 namespace RPG
 {
-  public class Character
+  public abstract class Character
   {
     public string Name;
     public int Healt;
@@ -19,6 +19,7 @@ namespace RPG
     public int ExperienceToNextLevel = 10;
     public int Level = 1;
     public int Coins = 10;
+    public string WeaponType = "";
     public Character(string name)
     {
       Name = name;
@@ -65,55 +66,72 @@ namespace RPG
 
     public void ShowBag()
     {
-      string itens = "";
       int x;
-
-      for (x = 0; x < this.Bag.Length; x++)
-      {
-        if (this.Bag[x] == null)
-        {
-          break;
-        }
-        itens += $"\n[{x + 1}] " + this.Bag[x].Name;
-      }
       while (true)
       {
+        string itens = "";
+        for (x = 0; x < this.Bag.Length; x++)
+        {
+          if (this.Bag[x] == null)
+          {
+            break;
+          }
+          itens += $"\n[{x + 1}] " + this.Bag[x].Name;
+        }
+
         Console.Clear();
         Console.WriteLine($"Itens in the bag:");
         Console.WriteLine($"-----------------");
         Console.WriteLine($"{itens}");
         Console.WriteLine($"[{x + 1}] Back");
+        Console.WriteLine("");
         string? opt = Console.ReadLine();
         if (opt == Convert.ToString(x + 1))
         {
           break;
         }
-        int index = Convert.ToInt32(opt) - 1;
-        if (this.Bag[index] != null)
+        if (opt == null || opt == "")
         {
-          this.Bag[index].ShowItem();
-          Console.WriteLine($"\n[1] Use");
-          Console.WriteLine($"[2] Drop");
-          Console.WriteLine($"[3] Back");
-          Console.WriteLine("");
-          string? option = Console.ReadLine();
-          if (option == "1")
-          {
-            this.Bag[index].UseFunction(this);
-
-          }
-          else if (option == "2")
-          {
-            var list = this.Bag.ToList();
-            list.RemoveAt(index);
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
-            list.Add(null);
-            this.Bag = [.. list];
-          }
-          break;
+          Console.WriteLine($"\nPlease, choose an valid option.\n");
+          Console.ReadKey();
         }
-        Console.WriteLine($"\nPlease, choose an valid option.\n");
-        Console.ReadKey();
+        else
+        {
+
+          int index = Convert.ToInt32(opt) - 1;
+          if (this.Bag[index] != null)
+          {
+            this.Bag[index].ShowItem();
+            Console.WriteLine("");
+            Console.WriteLine($"[1] Use");
+            Console.WriteLine($"[2] Drop");
+            Console.WriteLine($"[3] Back");
+            Console.WriteLine("");
+            string? option = Console.ReadLine();
+            if (option == "1")
+            {
+              this.Bag[index].UseFunction(this);
+              Console.ReadKey();
+            }
+            else if (option == "2")
+            {
+              var list = this.Bag.ToList();
+              list.RemoveAt(index);
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
+              list.Add(null);
+              this.Bag = [.. list];
+            }
+            else
+            {
+              break;
+            }
+          }
+          else
+          {
+            Console.WriteLine($"\nPlease, choose an valid option.\n");
+            Console.ReadKey();
+          }
+        }
       }
     }
 

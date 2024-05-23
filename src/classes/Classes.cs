@@ -4,14 +4,19 @@ namespace RPG
   {
     public Knight(string name) : base(name)
     {
+      Weapons weapons = new Weapons();
       base.BaseHealt = 100;
       base.Healt = 100;
       base.BaseDamage = 20;
       base.Damage = 20;
       base.BaseSpeed = 10;
       base.Speed = 10;
-      Item sword = new Sword("Rust Sword", 10, 1, "Commun");
-      this.AddItemToBag(sword);
+      base.WeaponType = "Sword";
+      Item? weapon = weapons.RandomWeaponByType(base.WeaponType);
+      if (weapon != null)
+      {
+        this.AddItemToBag(weapon);
+      }
       Item armor = new Armor("Rust Armor", 5, "Commun", 1);
       this.AddItemToBag(armor);
     }
@@ -34,16 +39,23 @@ namespace RPG
   {
     public Archer(string name) : base(name)
     {
+      Weapons weapons = new Weapons();
       base.BaseHealt = 80;
       base.Healt = 80;
       base.BaseDamage = 25;
       base.Damage = 25;
       base.BaseSpeed = 15;
       base.Speed = 15;
-      Item arch = new Arch("Small Bow", 13, 1, "Commun");
+      Item arch = new Arch("Small Bow", 13, "Commun");
       this.AddItemToBag(arch);
       Item armor = new Armor("Leather Armor", 3, "Commun", 1);
       this.AddItemToBag(armor);
+      base.WeaponType = "Arch";
+      Item? weapon = weapons.RandomWeaponByType(base.WeaponType);
+      if (weapon != null)
+      {
+        this.AddItemToBag(weapon);
+      }
     }
 
     public override void ShowClass()
@@ -65,16 +77,23 @@ namespace RPG
   {
     public Mage(string name) : base(name)
     {
+      Weapons weapons = new Weapons();
       base.BaseHealt = 70;
       base.Healt = 70;
       base.BaseDamage = 30;
       base.Damage = 30;
       base.BaseSpeed = 13;
       base.Speed = 13;
-      Item stave = new Stave("Wood stave", 10, 1, "Commun");
+      Item stave = new Stave("Wood stave", 10, "Commun");
       this.AddItemToBag(stave);
       Item armor = new Armor("Cloak", 3, "Commun", 1);
       this.AddItemToBag(armor);
+      base.WeaponType = "Stave";
+      Item? weapon = weapons.RandomWeaponByType(base.WeaponType);
+      if (weapon != null)
+      {
+        this.AddItemToBag(weapon);
+      }
     }
 
     public override void ShowClass()
@@ -95,16 +114,23 @@ namespace RPG
   {
     public Assassin(string name) : base(name)
     {
+      Weapons weapons = new Weapons();
       base.BaseHealt = 70;
       base.Healt = 70;
       base.BaseDamage = 25;
       base.Damage = 25;
       base.BaseSpeed = 20;
       base.Speed = 20;
-      Item dagger = new Dagger("Rust Dagger", 15, 1, "Commun");
+      Item dagger = new Dagger("Rust Dagger", 15, "Commun");
       this.AddItemToBag(dagger);
       Item armor = new Armor("Leather Armor", 2, "Commun", 1);
       this.AddItemToBag(armor);
+      base.WeaponType = "Dagger";
+      Item? weapon = weapons.RandomWeaponByType(base.WeaponType);
+      if (weapon != null)
+      {
+        this.AddItemToBag(weapon);
+      }
     }
 
     public override void ShowClass()
@@ -124,16 +150,23 @@ namespace RPG
   {
     public Healer(string name) : base(name)
     {
+      Weapons weapons = new Weapons();
       base.BaseHealt = 120;
       base.Healt = 120;
       base.BaseDamage = 15;
       base.Damage = 15;
       base.BaseSpeed = 10;
       base.Speed = 10;
-      Item stave = new Stave("Wood stave", 10, 1, "Commun");
+      Item stave = new Stave("Wood stave", 10, "Commun");
       this.AddItemToBag(stave);
       Item armor = new Armor("Cloak", 3, "Commun", 1);
       this.AddItemToBag(armor);
+      base.WeaponType = "Stave";
+      Item? weapon = weapons.RandomWeaponByType(base.WeaponType);
+      if (weapon != null)
+      {
+        this.AddItemToBag(weapon);
+      }
     }
 
     public override void ShowClass()
@@ -154,16 +187,23 @@ namespace RPG
   {
     public Paladin(string name) : base(name)
     {
+      Weapons weapons = new Weapons();
       base.BaseHealt = 150;
       base.Healt = 150;
       base.BaseDamage = 15;
       base.Damage = 15;
       base.BaseSpeed = 5;
       base.Speed = 5;
-      Item sword = new Sword("Rust Sword", 10, 1, "Commun");
+      Item sword = new Sword("Rust Sword", 10, "Commun");
       this.AddItemToBag(sword);
       Item armor = new Armor("Rust Armor", 5, "Commun", 1);
       this.AddItemToBag(armor);
+      base.WeaponType = "Sword";
+      Item? weapon = weapons.RandomWeaponByType(base.WeaponType);
+      if (weapon != null)
+      {
+        this.AddItemToBag(weapon);
+      }
     }
 
     public override void ShowClass()
@@ -185,16 +225,23 @@ namespace RPG
   {
     public Barbarian(string name) : base(name)
     {
+      Weapons weapons = new Weapons();
       base.BaseHealt = 80;
       base.Healt = 80;
       base.BaseDamage = 25;
       base.Damage = 25;
       base.BaseSpeed = 13;
       base.Speed = 13;
-      Item axe = new Axe("Rust Axe", 10, 1, "Commun");
+      Item axe = new Axe("Rust Axe", 10, "Commun");
       this.AddItemToBag(axe);
       Item armor = new Armor("Leather Armor", 3, "Commun", 1);
       this.AddItemToBag(armor);
+      base.WeaponType = "Axe";
+      Item? weapon = weapons.RandomWeaponByType(base.WeaponType);
+      if (weapon != null)
+      {
+        this.AddItemToBag(weapon);
+      }
     }
 
     public override void ShowClass()
@@ -217,16 +264,23 @@ namespace RPG
   {
     public Bard(string name) : base(name)
     {
+      Weapons weapons = new Weapons();
       base.BaseHealt = 80;
       base.Healt = 80;
       base.BaseDamage = 15;
       base.Damage = 15;
       base.BaseSpeed = 15;
       base.Speed = 15;
-      Item mandolin = new Mandolin("Mandolin", 10, 1, "Commun");
+      Item mandolin = new Instrument("Mandolin", 10, "Commun");
       this.AddItemToBag(mandolin);
       Item armor = new Armor("Leather Armor", 5, "Commun", 1);
       this.AddItemToBag(armor);
+      base.WeaponType = "Instrument";
+      Item? weapon = weapons.RandomWeaponByType(base.WeaponType);
+      if (weapon != null)
+      {
+        this.AddItemToBag(weapon);
+      }
     }
 
     public override void ShowClass()

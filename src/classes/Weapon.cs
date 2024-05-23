@@ -20,70 +20,70 @@ namespace RPG
 
   public class Sword : Weapon
   {
-    public Sword(string name, int damage, int level, string rarity) : base(name, damage)
+    public Sword(string name, int damage, string rarity) : base(name, damage)
     {
       base.Range = 2;
-      base.Level = level;
+      base.Level = 1;
       base.Rarity = rarity;
     }
   }
 
   public class Axe : Weapon
   {
-    public Axe(string name, int damage, int level, string rarity) : base(name, damage)
+    public Axe(string name, int damage, string rarity) : base(name, damage)
     {
       base.Range = 3;
-      base.Level = level;
+      base.Level = 1;
       base.Rarity = rarity;
     }
   }
 
   public class Hammer : Weapon
   {
-    public Hammer(string name, int damage, int level, string rarity) : base(name, damage)
+    public Hammer(string name, int damage, string rarity) : base(name, damage)
     {
       base.Range = 3;
-      base.Level = level;
+      base.Level = 1;
       base.Rarity = rarity;
     }
   }
 
   public class Arch : Weapon
   {
-    public Arch(string name, int damage, int level, string rarity) : base(name, damage)
+    public Arch(string name, int damage, string rarity) : base(name, damage)
     {
       base.Range = 12;
-      base.Level = level;
+      base.Level = 1;
       base.Rarity = rarity;
     }
   }
 
   public class Dagger : Weapon
   {
-    public Dagger(string name, int damage, int level, string rarity) : base(name, damage)
+    public Dagger(string name, int damage, string rarity) : base(name, damage)
     {
       base.Range = 1;
-      base.Level = level;
+      base.Level = 1;
       base.Rarity = rarity;
     }
   }
 
   public class Stave : Weapon
   {
-    public Stave(string name, int damage, int level, string rarity) : base(name, damage)
+    public Stave(string name, int damage, string rarity) : base(name, damage)
     {
       base.Range = 10;
-      base.Level = level;
+      base.Level = 1;
       base.Rarity = rarity;
     }
   }
 
-  public class Mandolin : Weapon
+  public class Instrument : Weapon
   {
-    public Mandolin(string name, int damage, int level, string rarity) : base(name, damage)
+    public Instrument(string name, int damage, string rarity) : base(name, damage)
     {
       base.Range = 8;
-      base.Level = level;
+      base.Level = 1;
       base.Rarity = rarity;
     }
   }

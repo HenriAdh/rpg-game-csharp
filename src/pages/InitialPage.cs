@@ -27,7 +27,7 @@ namespace RPG
         Console.WriteLine($"[6] Paladin");
         Console.WriteLine($"[7] Barbarian");
         Console.WriteLine($"[8] Bard");
-        Console.WriteLine($"\n");
+        Console.WriteLine($"");
 
         race = Console.ReadLine();
         if (race == null || race == "")
@@ -37,9 +37,6 @@ namespace RPG
         }
         else
         {
-          Knight knight = new("example");
-          knight.ShowClass();
-          Console.ReadKey();
           new_player_infs[1] = race;
           return new_player_infs;
         }
@@ -56,7 +53,7 @@ namespace RPG
       Console.WriteLine($"[3] Bag             ");
       Console.WriteLine($"[4] Store           ");
       Console.WriteLine($"[5] Exit            ");
-      Console.WriteLine("\n");
+      Console.WriteLine("");
     }
   }
 }

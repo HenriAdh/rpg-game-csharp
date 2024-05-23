@@ -1,6 +1,6 @@
 namespace RPG
 {
-  class Names
+  public class Names
   {
     public string[] ListNames = [
       "Alexander", "Isabella", "William", "Sophia", "Thomas", "Amelia", "James",

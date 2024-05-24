@@ -37,6 +37,14 @@ namespace RPG
     public override void UseFunction(Character character)
     {
       character.RecoveryHealt(this);
+      this.Amount--;
+      if (this.Amount <= 0)
+      {
+        List<Item?> list = [.. character.Bag];
+        list.Remove(this);
+        list.Add(null);
+        character.Bag = [.. list];
+      }
     }
   }
 }

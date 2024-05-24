@@ -6,7 +6,6 @@ class Program
   {
     Console.Clear();
     InitialPage initialPage = new InitialPage();
-    Store store = new Store();
     string[] infs_player = initialPage.NewPlayer();
     Character hero = infs_player[1] switch
     {
@@ -20,6 +19,7 @@ class Program
       "8" => new Bard(infs_player[0]),
       _ => new Knight(infs_player[0]),
     };
+    Store store = new Store(hero);
 
     while (true)
     {
@@ -35,6 +35,7 @@ class Program
       }
       else if (opt == "1")
       {
+        store = new Store(hero);
         Character enemy = GenerateEnemy(hero);
         Battle battle = new Battle(hero, enemy);
         battle.InitBattle();
@@ -77,8 +78,9 @@ class Program
           Console.Clear();
           Console.WriteLine($"You rest and recovery your energy. Points of Healt: {hero.Healt}");
           Console.ReadKey();
-          int experience = enemy.Level * 5;
+          int experience = (enemy.Level == 0 ? 1 : enemy.Level) * 5;
           hero.Experience += experience;
+          if (hero.WeaponEquiped != null) hero.WeaponEquiped.Level++;
           Console.WriteLine($"After this battle, you learn more and have gained {experience} points of exeperience. {hero.Experience}/{hero.ExperienceToNextLevel}");
           Console.ReadKey();
           if (hero.Experience >= hero.ExperienceToNextLevel)
@@ -87,6 +89,7 @@ class Program
           }
           hero.Coins += enemy.Coins;
           Console.WriteLine($"{enemy.Name} dropped {enemy.Coins} coins. Now {hero.Name} have {hero.Coins} coins.");
+
         }
       }
       else if (opt == "2")
@@ -130,6 +133,17 @@ class Program
       8 => new Bard(newName),
       _ => new Knight(newName),
     };
+
+    enemy.BaseHealt += hero.Level * enemy.BaseHealt / 15 / 10;
+    enemy.Healt = enemy.BaseHealt;
+
+    enemy.BaseDamage += hero.Level * enemy.BaseDamage / 15 / 10;
+    enemy.Damage = enemy.BaseDamage;
+
+    enemy.BaseSpeed += hero.Level * enemy.BaseSpeed / 15 / 10;
+    enemy.Speed = enemy.BaseSpeed;
+
+    enemy.Coins = new Random().Next(4, (hero.Level + 1) * 5);
 
     return enemy;
   }

@@ -17,7 +17,7 @@ namespace RPG
     public Item? ArmorEquiped;
     public int Experience = 0;
     public int ExperienceToNextLevel = 10;
-    public int Level = 1;
+    public int Level = 0;
     public int Coins = 10;
     public string WeaponType = "";
     public Character(string name)
@@ -28,6 +28,17 @@ namespace RPG
     }
 
     public virtual void ShowClass() { }
+
+    private string ShowClassCharacter()
+    {
+      string character_class = this.GetType().ToString();
+      string type = "";
+      for (int x = 0; x < character_class.Length; x++)
+      {
+        if (x > 3) type += character_class[x];
+      }
+      return type;
+    }
 
     public void Show()
     {
@@ -43,14 +54,15 @@ namespace RPG
       }
 
       Console.Clear();
-      Console.WriteLine($"LEVEL: {this.Level} - {this.Experience}/{this.ExperienceToNextLevel}");
-      Console.WriteLine($"NAME: {this.Name}");
-      Console.WriteLine($"HP: {this.Healt}");
-      Console.WriteLine($"DAMAGE: {damage}");
-      Console.WriteLine($"SPEED: {this.Speed}");
+      Console.WriteLine($"LEVEL:   {this.Level} - {this.Experience}/{this.ExperienceToNextLevel}");
+      Console.WriteLine($"NAME:    {this.Name}");
+      Console.WriteLine($"HP:      {this.Healt}");
+      Console.WriteLine($"DAMAGE:  {damage}");
+      Console.WriteLine($"SPEED:   {this.Speed}");
       Console.WriteLine($"DEFENSE: {defense}");
-      Console.WriteLine($"WEAPON: {this.WeaponEquiped?.Name ?? "Nothing"}");
-      Console.WriteLine($"ARMOR: {this.ArmorEquiped?.Name ?? "Nothing"}");
+      Console.WriteLine($"WEAPON:  {this.WeaponEquiped?.Name ?? "Nothing"} - {this.WeaponEquiped?.Rarity ?? ""}");
+      Console.WriteLine($"ARMOR:   {this.ArmorEquiped?.Name ?? "Nothing"} - {this.ArmorEquiped?.Rarity ?? ""}");
+      Console.WriteLine($"CLASS:   {this.ShowClassCharacter()}");
 
       int count = 0;
       for (int x = 0; x < this.Bag.Length; x++)
@@ -115,9 +127,8 @@ namespace RPG
             }
             else if (option == "2")
             {
-              var list = this.Bag.ToList();
+              List<Item?> list = [.. this.Bag];
               list.RemoveAt(index);
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
               list.Add(null);
               this.Bag = [.. list];
             }
@@ -190,13 +201,13 @@ namespace RPG
       int damage = this.Damage;
       if (!(this.WeaponEquiped == null))
       {
-        damage += this.WeaponEquiped.Power;
+        damage += this.WeaponEquiped.Power + this.WeaponEquiped.Level / 10 * this.WeaponEquiped.Level / 5;
       }
       if (luck < 6)
       {
         damage /= 2;
       }
-      if (luck > 15)
+      if (luck > 14)
       {
         damage *= 2;
       }
@@ -217,15 +228,15 @@ namespace RPG
       this.Level += 1;
 
       this.Experience -= this.ExperienceToNextLevel;
-      this.ExperienceToNextLevel += this.Level * 2;
+      this.ExperienceToNextLevel += this.ExperienceToNextLevel / 5 + this.Level * 2;
 
-      this.BaseHealt += this.BaseHealt / 10;
+      this.BaseHealt += this.BaseHealt / 15;
       this.Healt = this.BaseHealt;
 
-      this.BaseDamage += this.BaseDamage / 10;
+      this.BaseDamage += this.BaseDamage / 15;
       this.Damage = this.BaseDamage;
 
-      this.BaseSpeed += this.BaseSpeed / 10;
+      this.BaseSpeed += this.BaseSpeed / 15;
       this.Speed = this.BaseSpeed;
 
       Console.WriteLine($"Congratulations, {this.Name} up to level {this.Level}!");

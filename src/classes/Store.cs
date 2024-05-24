@@ -1,10 +1,15 @@
+
 namespace RPG
 {
   class Store
   {
     public Item[] ListItem = new Item[10];
     private Weapons Weapons = new Weapons();
-    public Store() { }
+    private Item[] ItemsToBuy = new Item[10];
+    public Store(Character hero)
+    {
+      this.ItemsToBuy = this.DrawItems(hero);
+    }
 
     public void ShowStore(Character hero)
     {
@@ -39,12 +44,12 @@ namespace RPG
 
     private void BuyItems(Character hero)
     {
-      Item[] itemsToBuy = this.DrawItems(hero);
       Console.Clear();
-      for (int x = 0; x < itemsToBuy.Length; x++)
+      int x;
+      for (x = 0; x < this.ItemsToBuy.Length; x++)
       {
-        int value;
-        value = itemsToBuy[x].Rarity switch
+        int value = 0;
+        value = this.ItemsToBuy[x].Rarity switch
         {
           "Common" => 20,
           "Rare" => 40,
@@ -53,7 +58,45 @@ namespace RPG
           "Legendary" => 320,
           _ => 0
         };
-        Console.WriteLine($"[{x + 1}] {itemsToBuy[x].Name} - {itemsToBuy[x].Rarity} - ${value}");
+        Console.WriteLine($"[{x + 1}] {this.ItemsToBuy[x].Name} - {this.ItemsToBuy[x].Rarity} - ${value}");
+      }
+      Console.WriteLine($"[{x + 1}] Exit");
+      string? opt = Console.ReadLine();
+      if (opt != null && opt.ToString() == $"{x + 1}")
+      {
+        return;
+      }
+      else if (opt != null && opt != "")
+      {
+        int optInt = new Functions().TryConvertToInt(opt);
+        if (optInt != 0)
+        {
+          optInt--;
+          int value = this.ItemsToBuy[optInt].Rarity switch
+          {
+            "Common" => 20,
+            "Rare" => 40,
+            "Epic" => 80,
+            "Mythic" => 160,
+            "Legendary" => 320,
+            _ => 0
+          };
+
+          if (hero.Coins < value)
+          {
+            Console.WriteLine("\nInsuficient coins!");
+            Console.ReadKey();
+            return;
+          }
+          else
+          {
+            hero.AddItemToBag(this.ItemsToBuy[optInt]);
+            hero.Coins -= value;
+            Console.WriteLine($"{ItemsToBuy[optInt].Name} pushased by {value} Coins!");
+            Console.ReadKey();
+            return;
+          }
+        }
       }
       Console.ReadKey();
     }

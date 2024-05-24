@@ -62,8 +62,9 @@ namespace RPG
       if (lists[type] != null)
       {
         Random random = new Random();
-        int rdNumber = random.Next(0, lists[type].Length);
-        return lists[type][rdNumber];
+        int rdNumber = random.Next(0, 100) + 1;
+        int i = GetPercent(rdNumber);
+        return lists[type][i];
       }
       else
       {
@@ -76,9 +77,23 @@ namespace RPG
       Item[][] items = [this.Sword, this.Arch, this.Axe, this.Stave, this.Dagger, this.Instrument];
       Random random = new Random();
       int x = random.Next(0, items.Length);
-      int y = random.Next(0, items[x].Length);
+      int y = random.Next(0, 100) + 1;
 
-      return items[x][y];
+      int z = GetPercent(y);
+
+      return items[x][z];
+    }
+
+    private static int GetPercent(int number)
+    {
+      int rarity;
+      if (number <= 60) rarity = 1;
+      else if (number <= 85) rarity = 2;
+      else if (number <= 95) rarity = 3;
+      else if (number <= 99) rarity = 4;
+      else rarity = 5;
+
+      return rarity - 1;
     }
   }
 }

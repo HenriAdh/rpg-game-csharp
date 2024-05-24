@@ -39,7 +39,8 @@ class Program
         Character enemy = GenerateEnemy(hero);
         Battle battle = new Battle(hero, enemy);
         battle.InitBattle();
-        if (hero.Healt <= 0)
+        string winner = battle.CheckWinner(hero, enemy);
+        if (winner == "enemy")
         {
           Console.WriteLine($"Game Over, you are died.");
           Console.WriteLine("\nDo you wanna play again? (y/n)");
@@ -89,7 +90,6 @@ class Program
           }
           hero.Coins += enemy.Coins;
           Console.WriteLine($"{enemy.Name} dropped {enemy.Coins} coins. Now {hero.Name} have {hero.Coins} coins.");
-
         }
       }
       else if (opt == "2")

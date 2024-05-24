@@ -23,7 +23,11 @@ namespace RPG
     public Character(string name)
     {
       Name = name;
-      Item heal_potion = new Heal("Small Heal Potion", 10, 2, "Commun", 1);
+      Armors armors = new Armors();
+      Item armor = armors.RandomArmor();
+      this.AddItemToBag(armor);
+      this.ArmorEquiped = armor;
+      Item heal_potion = new Heal("Small Heal Potion", 10, 2, "Common", 1);
       this.AddItemToBag(heal_potion);
     }
 

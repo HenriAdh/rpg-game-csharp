@@ -2,7 +2,6 @@ namespace RPG
 {
   public class Potion : Item
   {
-    public int Amount;
     public Potion(string name, int power, int amount) : base(name, power)
     {
       this.Amount = amount;

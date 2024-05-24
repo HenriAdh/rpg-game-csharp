@@ -1,4 +1,5 @@
 using System;
+using System.Reflection.Metadata.Ecma335;
 namespace RPG
 {
   public class Battle
@@ -45,6 +46,11 @@ namespace RPG
             this.Hero.Attack(this.Enemy, hero_luck);
 
             Console.ReadKey();
+            if (Hero.Healt <= 0 || Enemy.Healt <= 0)
+            {
+              Console.WriteLine("");
+              break;
+            }
 
             Console.WriteLine("\nEnemy Turn!");
             int enemy_luck = this.RollTheDiceAsync();
@@ -57,6 +63,11 @@ namespace RPG
             this.Enemy.Attack(this.Hero, enemy_luck);
 
             Console.ReadKey();
+            if (Hero.Healt <= 0 || Enemy.Healt <= 0)
+            {
+              Console.WriteLine("");
+              break;
+            }
 
             Console.WriteLine("\nYour Turn!");
             int hero_luck = this.RollTheDiceAsync();
@@ -86,6 +97,17 @@ namespace RPG
         }
         Console.ReadKey();
       }
+    }
+
+    public string CheckWinner(Character hero, Character enemy)
+    {
+      if (hero.Speed > enemy.Speed)
+      {
+        if (enemy.Healt <= 0) return "hero";
+        return "enemy";
+      }
+      if (hero.Healt <= 0) return "enemy";
+      return "hero";
     }
 
     public int RollTheDiceAsync()

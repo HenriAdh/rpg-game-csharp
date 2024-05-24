@@ -18,8 +18,6 @@ namespace RPG
         this.AddItemToBag(weapon);
         this.WeaponEquiped = weapon;
       }
-      Item armor = new Armor("Rust Armor", 5, "Commun", 1);
-      this.AddItemToBag(armor);
     }
 
     public override void ShowClass()
@@ -54,8 +52,6 @@ namespace RPG
         this.AddItemToBag(weapon);
         this.WeaponEquiped = weapon;
       }
-      Item armor = new Armor("Leather Armor", 3, "Commun", 1);
-      this.AddItemToBag(armor);
     }
 
     public override void ShowClass()
@@ -91,8 +87,6 @@ namespace RPG
         this.AddItemToBag(weapon);
         this.WeaponEquiped = weapon;
       }
-      Item armor = new Armor("Cloak", 3, "Commun", 1);
-      this.AddItemToBag(armor);
     }
 
     public override void ShowClass()
@@ -127,8 +121,6 @@ namespace RPG
         this.AddItemToBag(weapon);
         this.WeaponEquiped = weapon;
       }
-      Item armor = new Armor("Leather Armor", 2, "Commun", 1);
-      this.AddItemToBag(armor);
     }
 
     public override void ShowClass()
@@ -162,8 +154,6 @@ namespace RPG
         this.AddItemToBag(weapon);
         this.WeaponEquiped = weapon;
       }
-      Item armor = new Armor("Cloak", 3, "Commun", 1);
-      this.AddItemToBag(armor);
     }
 
     public override void ShowClass()
@@ -198,8 +188,6 @@ namespace RPG
         this.AddItemToBag(weapon);
         this.WeaponEquiped = weapon;
       }
-      Item armor = new Armor("Rust Armor", 5, "Commun", 1);
-      this.AddItemToBag(armor);
     }
 
     public override void ShowClass()
@@ -235,8 +223,6 @@ namespace RPG
         this.AddItemToBag(weapon);
         this.WeaponEquiped = weapon;
       }
-      Item armor = new Armor("Leather Armor", 3, "Commun", 1);
-      this.AddItemToBag(armor);
     }
 
     public override void ShowClass()
@@ -273,8 +259,6 @@ namespace RPG
         this.AddItemToBag(weapon);
         this.WeaponEquiped = weapon;
       }
-      Item armor = new Armor("Leather Armor", 5, "Commun", 1);
-      this.AddItemToBag(armor);
     }
 
     public override void ShowClass()

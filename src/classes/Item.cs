@@ -6,6 +6,7 @@ namespace RPG
     public int Power;
     public string Rarity;
     public int Level;
+    public int Amount = 1;
 
     public Item(string name, int power)
     {

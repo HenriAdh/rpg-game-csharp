@@ -12,7 +12,7 @@ namespace RPG
       base.BaseSpeed = 10;
       base.Speed = 10;
       base.WeaponType = "Sword";
-      Item? weapon = weapons.RandomWeaponByType(base.WeaponType);
+      Weapon? weapon = weapons.RandomWeaponByType(base.WeaponType);
       if (weapon != null)
       {
         this.AddItemToBag(weapon);
@@ -46,7 +46,7 @@ namespace RPG
       base.BaseSpeed = 15;
       base.Speed = 15;
       base.WeaponType = "Arch";
-      Item? weapon = weapons.RandomWeaponByType(base.WeaponType);
+      Weapon? weapon = weapons.RandomWeaponByType(base.WeaponType);
       if (weapon != null)
       {
         this.AddItemToBag(weapon);
@@ -81,7 +81,7 @@ namespace RPG
       base.BaseSpeed = 13;
       base.Speed = 13;
       base.WeaponType = "Stave";
-      Item? weapon = weapons.RandomWeaponByType(base.WeaponType);
+      Weapon? weapon = weapons.RandomWeaponByType(base.WeaponType);
       if (weapon != null)
       {
         this.AddItemToBag(weapon);
@@ -115,7 +115,7 @@ namespace RPG
       base.BaseSpeed = 20;
       base.Speed = 20;
       base.WeaponType = "Dagger";
-      Item? weapon = weapons.RandomWeaponByType(base.WeaponType);
+      Weapon? weapon = weapons.RandomWeaponByType(base.WeaponType);
       if (weapon != null)
       {
         this.AddItemToBag(weapon);
@@ -148,7 +148,7 @@ namespace RPG
       base.BaseSpeed = 10;
       base.Speed = 10;
       base.WeaponType = "Stave";
-      Item? weapon = weapons.RandomWeaponByType(base.WeaponType);
+      Weapon? weapon = weapons.RandomWeaponByType(base.WeaponType);
       if (weapon != null)
       {
         this.AddItemToBag(weapon);
@@ -182,7 +182,7 @@ namespace RPG
       base.BaseSpeed = 5;
       base.Speed = 5;
       base.WeaponType = "Sword";
-      Item? weapon = weapons.RandomWeaponByType(base.WeaponType);
+      Weapon? weapon = weapons.RandomWeaponByType(base.WeaponType);
       if (weapon != null)
       {
         this.AddItemToBag(weapon);
@@ -217,7 +217,7 @@ namespace RPG
       base.BaseSpeed = 13;
       base.Speed = 13;
       base.WeaponType = "Axe";
-      Item? weapon = weapons.RandomWeaponByType(base.WeaponType);
+      Weapon? weapon = weapons.RandomWeaponByType(base.WeaponType);
       if (weapon != null)
       {
         this.AddItemToBag(weapon);
@@ -253,7 +253,7 @@ namespace RPG
       base.BaseSpeed = 15;
       base.Speed = 15;
       base.WeaponType = "Instrument";
-      Item? weapon = weapons.RandomWeaponByType(base.WeaponType);
+      Weapon? weapon = weapons.RandomWeaponByType(base.WeaponType);
       if (weapon != null)
       {
         this.AddItemToBag(weapon);

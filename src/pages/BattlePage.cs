@@ -39,7 +39,7 @@ namespace RPG
         if (opt == "1")
         {
           Console.Clear();
-          if (this.Hero.Speed >= this.Enemy.Speed)
+          if (this.Hero.Speed + this.Hero.WeaponEquiped?.Range >= this.Enemy.Speed + this.Enemy.WeaponEquiped?.Range)
           {
             Console.WriteLine("\nYour Turn!");
             int hero_luck = this.RollTheDiceAsync();
@@ -81,20 +81,23 @@ namespace RPG
         else if (opt == "2")
         {
           this.Hero.ShowBag();
+          Console.ReadKey();
         }
         else if (opt == "3")
         {
           this.Hero.Show();
+          Console.ReadKey();
         }
         else if (opt == "4")
         {
           this.Enemy.Show();
+          Console.ReadKey();
         }
         else
         {
           Console.WriteLine("\nPlease, choose an valid option.");
+          Console.ReadKey();
         }
-        Console.ReadKey();
       }
     }
 

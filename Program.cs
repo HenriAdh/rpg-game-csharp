@@ -72,7 +72,6 @@ class Program
         }
         else
         {
-          Console.ReadKey();
           Console.Clear();
           Console.WriteLine($"You Defeat {enemy.Name}!");
           Console.ReadKey();

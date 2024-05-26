@@ -13,7 +13,7 @@ namespace RPG
     public int Speed;
     public int BaseSpeed;
     public Item[] Bag = new Item[10];
-    public Item? WeaponEquiped;
+    public Weapon? WeaponEquiped;
     public Item? ArmorEquiped;
     public int Experience = 0;
     public int ExperienceToNextLevel = 10;
@@ -27,7 +27,7 @@ namespace RPG
       Item armor = armors.RandomArmor();
       this.AddItemToBag(armor);
       this.ArmorEquiped = armor;
-      Item heal_potion = new Heal("Small Heal Potion", 10, 2, "Common", 1);
+      Item heal_potion = new Heal("Small Heal Potion", 20, 2, "Common", 1);
       this.AddItemToBag(heal_potion);
     }
 
@@ -175,7 +175,7 @@ namespace RPG
       }
     }
 
-    public void EquipWeapon(Item weapon)
+    public void EquipWeapon(Weapon weapon)
     {
       this.WeaponEquiped = weapon;
       Console.WriteLine($"{this.Name} equipped a weapon {weapon.Name}.");
@@ -234,6 +234,7 @@ namespace RPG
         enemy.Healt = 0;
       }
       Console.WriteLine($"{this.Name} hitted {enemy.Name}, dealt {damage} points of damage.");
+      Console.ReadKey();
     }
 
     public void LevelUp()

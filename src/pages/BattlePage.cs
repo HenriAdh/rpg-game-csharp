@@ -45,7 +45,6 @@ namespace RPG
             int hero_luck = this.RollTheDiceAsync();
             this.Hero.Attack(this.Enemy, hero_luck);
 
-            Console.ReadKey();
             if (Hero.Healt <= 0 || Enemy.Healt <= 0)
             {
               Console.WriteLine("");
@@ -62,7 +61,6 @@ namespace RPG
             int enemy_luck = this.RollTheDiceAsync();
             this.Enemy.Attack(this.Hero, enemy_luck);
 
-            Console.ReadKey();
             if (Hero.Healt <= 0 || Enemy.Healt <= 0)
             {
               Console.WriteLine("");
@@ -75,6 +73,7 @@ namespace RPG
           }
           if (Hero.Healt <= 0 || Enemy.Healt <= 0)
           {
+            Console.WriteLine("");
             break;
           }
           this.Round++;

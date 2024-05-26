@@ -67,6 +67,7 @@ namespace RPG
       Console.WriteLine($"WEAPON:  {this.WeaponEquiped?.Name ?? "Nothing"} - {this.WeaponEquiped?.Rarity ?? ""}");
       Console.WriteLine($"ARMOR:   {this.ArmorEquiped?.Name ?? "Nothing"} - {this.ArmorEquiped?.Rarity ?? ""}");
       Console.WriteLine($"CLASS:   {this.ShowClassCharacter()}");
+      Console.WriteLine($"COINS:   {this.Coins}");
 
       int count = 0;
       for (int x = 0; x < this.Bag.Length; x++)
@@ -104,7 +105,7 @@ namespace RPG
         string? opt = Console.ReadLine();
         if (opt == Convert.ToString(x + 1))
         {
-          break;
+          return;
         }
         if (opt == null || opt == "")
         {
@@ -117,28 +118,35 @@ namespace RPG
           int index = Convert.ToInt32(opt) - 1;
           if (this.Bag[index] != null)
           {
-            this.Bag[index].ShowItem();
-            Console.WriteLine("");
-            Console.WriteLine($"[1] Use");
-            Console.WriteLine($"[2] Drop");
-            Console.WriteLine($"[3] Back");
-            Console.WriteLine("");
-            string? option = Console.ReadLine();
-            if (option == "1")
+            while (true)
             {
-              this.Bag[index].UseFunction(this);
-              Console.ReadKey();
-            }
-            else if (option == "2")
-            {
-              List<Item?> list = [.. this.Bag];
-              list.RemoveAt(index);
-              list.Add(null);
-              this.Bag = [.. list];
-            }
-            else
-            {
-              break;
+
+              this.Bag[index].ShowItem();
+              Console.WriteLine("");
+              Console.WriteLine($"[1] Use");
+              Console.WriteLine($"[2] Drop");
+              Console.WriteLine($"[3] Back");
+              Console.WriteLine("");
+              string? option = Console.ReadLine();
+              if (option == "1")
+              {
+                this.Bag[index].UseFunction(this);
+                Console.ReadKey();
+                break;
+              }
+              else if (option == "2")
+              {
+                List<Item?> list = [.. this.Bag];
+                list.RemoveAt(index);
+                list.Add(null);
+                this.Bag = [.. list];
+                break;
+              }
+              else
+              {
+                Console.WriteLine($"\nPlease, choose an valid option.\n");
+                Console.ReadKey();
+              }
             }
           }
           else
@@ -219,6 +227,7 @@ namespace RPG
       {
         damage -= enemy.ArmorEquiped.Power;
       }
+      if (damage < 0) damage = 0;
       enemy.Healt -= damage;
       if (enemy.Healt < 0)
       {
@@ -234,13 +243,13 @@ namespace RPG
       this.Experience -= this.ExperienceToNextLevel;
       this.ExperienceToNextLevel += this.ExperienceToNextLevel / 5 + this.Level * 2;
 
-      this.BaseHealt += this.BaseHealt / 15;
+      this.BaseHealt += this.BaseHealt / 20;
       this.Healt = this.BaseHealt;
 
-      this.BaseDamage += this.BaseDamage / 15;
+      this.BaseDamage += this.BaseDamage / 12;
       this.Damage = this.BaseDamage;
 
-      this.BaseSpeed += this.BaseSpeed / 15;
+      this.BaseSpeed += this.BaseSpeed / 5;
       this.Speed = this.BaseSpeed;
 
       Console.WriteLine($"Congratulations, {this.Name} up to level {this.Level}!");

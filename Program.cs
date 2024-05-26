@@ -66,6 +66,7 @@ class Program
           }
           else
           {
+            Main();
             return;
           }
         }
@@ -116,7 +117,7 @@ class Program
   static Character GenerateEnemy(Character hero)
   {
     Random random = new();
-    int rdNumber = random.Next(0, 8);
+    int rdNumber = random.Next(0, 8) + 1;
 
     Names names = new();
     string newName = names.RandName();

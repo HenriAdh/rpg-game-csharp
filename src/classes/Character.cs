@@ -12,6 +12,8 @@ namespace RPG
     public int BaseDamage;
     public int Speed;
     public int BaseSpeed;
+    public int Mana;
+    public int BaseMana;
     public Item[] Bag = new Item[10];
     public Weapon? WeaponEquiped;
     public Item? ArmorEquiped;
@@ -19,6 +21,24 @@ namespace RPG
     public int ExperienceToNextLevel = 10;
     public int Level = 0;
     public int Coins = 10;
+    private int Luck = 10;
+    public Skills? ArsenalSkills;
+    public int DamageBuff = 0;
+    public int TimerDamageBuff = 0;
+    public int DamageDebuff = 0;
+    public int TimerDamageDebuff = 0;
+    public int ArmorBuff = 0;
+    public int TimerArmorBuff = 0;
+    public int ArmorDebuff = 0;
+    public int TimerArmorDebuff = 0;
+    public int LuckBuff = 0;
+    public int TimerLuckBuff = 0;
+    public int LuckDebuff = 0;
+    public int TimerLuckDebuff = 0;
+    public int SpeedBuff = 0;
+    public int TimerSpeedBuff = 0;
+    public int SpeedDebuff = 0;
+    public int TimerSpeedDebuff = 0;
     public string WeaponType = "";
     public Character(string name)
     {
@@ -208,31 +228,89 @@ namespace RPG
       }
     }
 
-    public void Attack(Character enemy, int luck = 10)
+    public virtual void Attack(Character enemy, string option = "1")
     {
-      int damage = this.Damage;
+      int damage = this.Damage,
+        enemy_armor = enemy.ArmorEquiped?.Power ?? 0,
+        luck = this.Luck;
+
+      // Console.WriteLine($"Damage Buff: {this.DamageBuff}");
+      // Console.WriteLine($"Damage Buff Timer: {this.TimerDamageBuff}");
+      // Console.WriteLine($"Damage Debuff: {this.DamageDebuff}");
+      // Console.WriteLine($"Damage Debuff Timer: {this.TimerDamageDebuff}");
+
+      // Console.WriteLine($"Armor Buff: {this.ArmorBuff}");
+      // Console.WriteLine($"Armor Buff Timer: {this.TimerArmorBuff}");
+      // Console.WriteLine($"Armor Debuff: {this.ArmorDebuff}");
+      // Console.WriteLine($"Armor Debuff Timer: {this.TimerArmorDebuff}");
+
+      // Console.WriteLine($"Luck Buff: {this.LuckBuff}");
+      // Console.WriteLine($"Luck Buff Timer: {this.TimerLuckBuff}");
+      // Console.WriteLine($"Luck Debuff: {this.LuckDebuff}");
+      // Console.WriteLine($"Luck Debuff Timer: {this.TimerLuckDebuff}");
+
+      this.RollTheDiceAsync();
       if (!(this.WeaponEquiped == null))
       {
         damage += this.WeaponEquiped.Power + this.WeaponEquiped.Level / 10 * this.WeaponEquiped.Level / 5;
       }
-      if (luck < 6)
+
+      if (this.DamageBuff > 0 && this.TimerDamageBuff > 0)
       {
-        damage /= 2;
+        damage += this.DamageBuff;
+        this.TimerDamageBuff--;
+        if (this.TimerDamageBuff == 0) this.DamageBuff = 0;
       }
-      if (luck > 14)
+      if (this.DamageDebuff > 0 && this.TimerDamageDebuff > 0)
       {
-        damage *= 2;
-      }
-      if (enemy.ArmorEquiped != null)
-      {
-        damage -= enemy.ArmorEquiped.Power;
+        damage -= this.DamageDebuff;
+        this.TimerDamageDebuff--;
+        if (this.TimerDamageDebuff == 0) this.DamageDebuff = 0;
       }
       if (damage < 0) damage = 0;
-      enemy.Healt -= damage;
-      if (enemy.Healt < 0)
+
+      if (this.LuckBuff > 0 && this.TimerLuckBuff > 0)
       {
-        enemy.Healt = 0;
+        luck += this.LuckBuff;
+        this.TimerLuckBuff--;
+        if (this.TimerLuckBuff == 0) this.LuckBuff = 0;
       }
+      if (this.LuckDebuff > 0 && this.TimerLuckDebuff > 0)
+      {
+        luck -= this.LuckDebuff;
+        this.TimerLuckDebuff--;
+        if (this.TimerLuckDebuff == 0) this.LuckDebuff = 0;
+      }
+      if (luck < 1) luck = 1;
+      else if (luck > 20) luck = 20;
+
+      if (luck < 6) damage /= 2;
+      if (luck > 14) damage *= 2;
+
+      if (enemy.ArmorBuff > 0 && enemy.TimerArmorBuff > 0)
+      {
+        enemy_armor += enemy.ArmorBuff;
+        enemy.TimerArmorBuff--;
+        if (this.TimerArmorBuff == 0) this.ArmorBuff = 0;
+      }
+      if (enemy.ArmorDebuff > 0 && enemy.TimerArmorDebuff > 0)
+      {
+        enemy_armor -= enemy.ArmorDebuff;
+        enemy.TimerArmorDebuff--;
+        if (this.TimerArmorDebuff == 0) this.ArmorDebuff = 0;
+      }
+      if (enemy_armor < 0) enemy_armor = 0;
+
+      damage -= enemy_armor;
+
+      if (damage < 0) damage = 0;
+
+      enemy.Healt -= damage;
+      if (enemy.Healt < 0) enemy.Healt = 0;
+
+      this.Mana += 2;
+      if (this.Mana > this.BaseMana) this.Mana = this.BaseMana;
+
       Console.WriteLine($"{this.Name} hitted {enemy.Name}, dealt {damage} points of damage.");
       Console.ReadKey();
     }
@@ -258,6 +336,26 @@ namespace RPG
       Console.WriteLine($"Base damage increased to {this.BaseDamage}!");
       Console.WriteLine($"Base speed increased to {this.BaseSpeed}!");
       Console.ReadKey();
+    }
+    public void RollTheDiceAsync()
+    {
+      Random random = new Random();
+      int randint = random.Next(0, 20) + 1;
+      Console.Write("\nRolling the dice");
+      Pause();
+      Console.Write(".");
+      Pause();
+      Console.Write(".");
+      Pause();
+      Console.Write(". ");
+      Pause();
+      Console.Write($"{randint}!!!\n");
+      this.Luck = randint;
+    }
+
+    private void Pause()
+    {
+      Thread.Sleep(300);
     }
   }
 }

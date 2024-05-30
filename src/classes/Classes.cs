@@ -12,12 +12,15 @@ namespace RPG
       base.BaseSpeed = 10;
       base.Speed = 10;
       base.WeaponType = "Sword";
+      base.BaseMana = 10;
+      base.Mana = 10;
       Weapon? weapon = weapons.RandomWeaponByType(base.WeaponType);
       if (weapon != null)
       {
         this.AddItemToBag(weapon);
         this.WeaponEquiped = weapon;
       }
+      base.ArsenalSkills = new Skills("Intimidate", 5, 10);
     }
 
     public override void ShowClass()
@@ -32,6 +35,23 @@ namespace RPG
         "making them essential in any battle"
       );
     }
+
+    public override void Attack(Character enemy, string option = "1")
+    {
+      if (option == "1")
+      {
+        base.Attack(enemy);
+      }
+      else
+      {
+        enemy.DamageDebuff += this.ArsenalSkills?.SecondSkill.Power ?? 0 + 1 * 8 / 10 * this.Level;
+        enemy.TimerDamageDebuff += 2;
+        this.Mana -= this.ArsenalSkills?.SecondSkill.ManaCost ?? 0;
+        if (this.Mana < 0) this.Mana = 0;
+        Console.WriteLine($"{this.Name} intimidate {enemy.Name}");
+        Console.ReadKey();
+      }
+    }
   }
 
   public class Archer : Character
@@ -45,6 +65,8 @@ namespace RPG
       base.Damage = 25;
       base.BaseSpeed = 15;
       base.Speed = 15;
+      base.BaseMana = 10;
+      base.Mana = 10;
       base.WeaponType = "Arch";
       Weapon? weapon = weapons.RandomWeaponByType(base.WeaponType);
       if (weapon != null)
@@ -52,6 +74,7 @@ namespace RPG
         this.AddItemToBag(weapon);
         this.WeaponEquiped = weapon;
       }
+      base.ArsenalSkills = new Skills("Focus", 5, 5);
     }
 
     public override void ShowClass()
@@ -67,6 +90,23 @@ namespace RPG
         "and speed to their advantage"
       );
     }
+
+    public override void Attack(Character enemy, string option = "1")
+    {
+      if (option == "1")
+      {
+        base.Attack(enemy);
+      }
+      else
+      {
+        this.LuckBuff += 5 + this.Level;
+        this.TimerLuckBuff += 2;
+        this.Mana -= this.ArsenalSkills?.SecondSkill.ManaCost ?? 0;
+        if (this.Mana < 0) this.Mana = 0;
+        Console.WriteLine($"{this.Name} is focused.");
+        Console.ReadKey();
+      }
+    }
   }
 
   public class Mage : Character
@@ -80,6 +120,8 @@ namespace RPG
       base.Damage = 30;
       base.BaseSpeed = 13;
       base.Speed = 13;
+      base.BaseMana = 10;
+      base.Mana = 10;
       base.WeaponType = "Stave";
       Weapon? weapon = weapons.RandomWeaponByType(base.WeaponType);
       if (weapon != null)
@@ -87,6 +129,7 @@ namespace RPG
         this.AddItemToBag(weapon);
         this.WeaponEquiped = weapon;
       }
+      base.ArsenalSkills = new Skills("Charge", 5, 10);
     }
 
     public override void ShowClass()
@@ -101,6 +144,23 @@ namespace RPG
         "formidable opponents on the battlefield"
       );
     }
+
+    public override void Attack(Character enemy, string option = "1")
+    {
+      if (option == "1")
+      {
+        base.Attack(enemy);
+      }
+      else
+      {
+        this.DamageBuff += 15 + 1 * 8 / 10 * this.Level;
+        this.TimerDamageBuff += 1;
+        this.Mana -= this.ArsenalSkills?.SecondSkill.ManaCost ?? 0;
+        if (this.Mana < 0) this.Mana = 0;
+        Console.WriteLine($"{this.Name} is charged.");
+        Console.ReadKey();
+      }
+    }
   }
 
   public class Assassin : Character
@@ -114,6 +174,8 @@ namespace RPG
       base.Damage = 25;
       base.BaseSpeed = 20;
       base.Speed = 20;
+      base.BaseMana = 10;
+      base.Mana = 10;
       base.WeaponType = "Dagger";
       Weapon? weapon = weapons.RandomWeaponByType(base.WeaponType);
       if (weapon != null)
@@ -121,6 +183,7 @@ namespace RPG
         this.AddItemToBag(weapon);
         this.WeaponEquiped = weapon;
       }
+      base.ArsenalSkills = new Skills("Fatal Blow", 10, 10);
     }
 
     public override void ShowClass()
@@ -133,6 +196,25 @@ namespace RPG
         "poison, and other clandestine tools, they are deadly in close combat\n" +
         "and can swiftly dispatch their targets before vanishing without a trace"
       );
+    }
+
+    public override void Attack(Character enemy, string option = "1")
+    {
+      if (option == "1")
+      {
+        base.Attack(enemy);
+      }
+      else
+      {
+        this.DamageBuff += 10 + 1 * 8 / 10 * this.Level;
+        this.TimerDamageBuff += 1;
+        this.LuckBuff += 5;
+        this.TimerLuckBuff += 1;
+        this.Mana -= this.ArsenalSkills?.SecondSkill.ManaCost ?? 0;
+        if (this.Mana < 0) this.Mana = 0;
+        Console.WriteLine($"{this.Name} prepared a fatal blow.");
+        Console.ReadKey();
+      }
     }
   }
 
@@ -147,6 +229,8 @@ namespace RPG
       base.Damage = 15;
       base.BaseSpeed = 10;
       base.Speed = 10;
+      base.BaseMana = 10;
+      base.Mana = 10;
       base.WeaponType = "Stave";
       Weapon? weapon = weapons.RandomWeaponByType(base.WeaponType);
       if (weapon != null)
@@ -154,6 +238,7 @@ namespace RPG
         this.AddItemToBag(weapon);
         this.WeaponEquiped = weapon;
       }
+      base.ArsenalSkills = new Skills("Heal", 10, 30);
     }
 
     public override void ShowClass()
@@ -168,6 +253,23 @@ namespace RPG
         "in prolonged battles"
       );
     }
+
+    public override void Attack(Character enemy, string option = "1")
+    {
+      if (option == "1")
+      {
+        base.Attack(enemy);
+      }
+      else
+      {
+        int recovery_healt = 30 + 7 * 8 / 10 * this.Level;
+        this.Healt += recovery_healt;
+        this.Mana -= this.ArsenalSkills?.SecondSkill.ManaCost ?? 0;
+        if (this.Mana < 0) this.Mana = 0;
+        Console.WriteLine($"{this.Name} recovery {recovery_healt} healt points.");
+        Console.ReadKey();
+      }
+    }
   }
 
   public class Paladin : Character
@@ -181,6 +283,8 @@ namespace RPG
       base.Damage = 15;
       base.BaseSpeed = 5;
       base.Speed = 5;
+      base.BaseMana = 10;
+      base.Mana = 10;
       base.WeaponType = "Sword";
       Weapon? weapon = weapons.RandomWeaponByType(base.WeaponType);
       if (weapon != null)
@@ -188,6 +292,7 @@ namespace RPG
         this.AddItemToBag(weapon);
         this.WeaponEquiped = weapon;
       }
+      base.ArsenalSkills = new Skills("Divine defense", 5, 10);
     }
 
     public override void ShowClass()
@@ -203,6 +308,23 @@ namespace RPG
         "blows to their enemies and shielding their allies from harm"
       );
     }
+
+    public override void Attack(Character enemy, string option = "1")
+    {
+      if (option == "1")
+      {
+        base.Attack(enemy);
+      }
+      else
+      {
+        this.ArmorBuff += 5 + 1 * 8 / 10 * this.Level;
+        this.TimerArmorBuff += 3;
+        this.Mana -= this.ArsenalSkills?.SecondSkill.ManaCost ?? 0;
+        if (this.Mana < 0) this.Mana = 0;
+        Console.WriteLine($"{this.Name} equip your self with the divine defense.");
+        Console.ReadKey();
+      }
+    }
   }
 
   public class Barbarian : Character
@@ -216,6 +338,8 @@ namespace RPG
       base.Damage = 25;
       base.BaseSpeed = 13;
       base.Speed = 13;
+      base.BaseMana = 10;
+      base.Mana = 10;
       base.WeaponType = "Axe";
       Weapon? weapon = weapons.RandomWeaponByType(base.WeaponType);
       if (weapon != null)
@@ -223,6 +347,7 @@ namespace RPG
         this.AddItemToBag(weapon);
         this.WeaponEquiped = weapon;
       }
+      base.ArsenalSkills = new Skills("Berserker rage", 10, 10);
     }
 
     public override void ShowClass()
@@ -239,6 +364,26 @@ namespace RPG
         "their wake"
       );
     }
+
+    public override void Attack(Character enemy, string option = "1")
+    {
+      if (option == "1")
+      {
+        base.Attack(enemy);
+      }
+      else
+      {
+        this.DamageBuff += 12 + 1 * 8 / 10 * this.Level;
+        this.TimerDamageBuff += 3;
+
+        this.ArmorDebuff += 4 + 7 * 8 / 10 * enemy.Level;
+        this.TimerArmorDebuff += 3;
+        this.Mana -= this.ArsenalSkills?.SecondSkill.ManaCost ?? 0;
+        if (this.Mana < 0) this.Mana = 0;
+        Console.WriteLine($"{this.Name} goes into berserker rage.");
+        Console.ReadKey();
+      }
+    }
   }
 
   public class Bard : Character
@@ -252,6 +397,8 @@ namespace RPG
       base.Damage = 15;
       base.BaseSpeed = 15;
       base.Speed = 15;
+      base.BaseMana = 10;
+      base.Mana = 10;
       base.WeaponType = "Instrument";
       Weapon? weapon = weapons.RandomWeaponByType(base.WeaponType);
       if (weapon != null)
@@ -259,6 +406,7 @@ namespace RPG
         this.AddItemToBag(weapon);
         this.WeaponEquiped = weapon;
       }
+      base.ArsenalSkills = new Skills("Sing", 5, 10);
     }
 
     public override void ShowClass()
@@ -274,6 +422,33 @@ namespace RPG
         "Bards navigate the world with grace and style, leaving a lasting\n" +
         "impression wherever they go"
       );
+    }
+
+    public override void Attack(Character enemy, string option = "1")
+    {
+      if (option == "1")
+      {
+        base.Attack(enemy);
+      }
+      else
+      {
+        this.DamageBuff += 5 + 7 * 8 / 10 * this.Level;
+        this.TimerDamageBuff += 2;
+
+        this.ArmorBuff += 5 + 7 * 8 / 10 * this.Level;
+        this.TimerArmorBuff += 2;
+
+        this.SpeedBuff += 5 + 7 * 8 / 10 * this.Level;
+        this.TimerSpeedBuff += 2;
+
+        this.LuckBuff += 3 + this.Level / 3;
+        this.TimerLuckBuff += 2;
+        enemy.TimerDamageDebuff += 2;
+        this.Mana -= this.ArsenalSkills?.SecondSkill.ManaCost ?? 0;
+        if (this.Mana < 0) this.Mana = 0;
+        Console.WriteLine($"{this.Name} sings and buff your self.");
+        Console.ReadKey();
+      }
     }
   }
 }

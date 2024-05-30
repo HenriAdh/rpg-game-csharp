@@ -88,6 +88,7 @@ class Program
           {
             hero.LevelUp();
           }
+          hero.Mana = hero.BaseMana;
           hero.Coins += enemy.Coins;
           Console.WriteLine($"{enemy.Name} dropped {enemy.Coins} coins. Now {hero.Name} have {hero.Coins} coins.");
         }
@@ -143,7 +144,7 @@ class Program
     enemy.BaseSpeed += hero.Level * enemy.BaseSpeed / 15 / 10;
     enemy.Speed = enemy.BaseSpeed;
 
-    enemy.Coins = new Random().Next(4, (hero.Level + 1) * 5);
+    enemy.Coins = new Random().Next((hero.Level + 1) * 6, (hero.Level + 1) * 6 + (hero.Level + 1) * 3);
 
     return enemy;
   }
